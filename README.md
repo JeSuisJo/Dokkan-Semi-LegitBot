@@ -1,7 +1,7 @@
 # Dokkan-Semi-LegitBot
 A bot for the mobile game "Dokkan Battle" for PC (Emulator and screen mirroring)
 
-#ENG
+#ENG :
 The "Dokkan Semi-Legit Bot" script is a bot to automate farming for levels and ztur
 (If the script does not launch or closes suddenly, restart it)
 
