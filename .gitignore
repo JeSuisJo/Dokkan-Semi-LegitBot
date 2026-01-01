@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+*.png
+!img/*.png
+!placement*.png
+screen_coords.png
+debug_*.png
+*.log
+
