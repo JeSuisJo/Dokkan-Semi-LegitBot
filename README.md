@@ -1,6 +1,6 @@
 # Dokkan Semi-LegitBot
 
-An automation bot for Dragon Ball Z: Dokkan Battle that helps automate level farming and ZTUR (Zen Awakening) farming using ADB (Android Debug Bridge).
+An automation bot for Dragon Ball Z: Dokkan Battle that helps automate level farming and ZTUR farming using ADB (Android Debug Bridge).
 
 ## Features
 
