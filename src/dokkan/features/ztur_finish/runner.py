@@ -1,6 +1,6 @@
 """ZTUR Finish: run the stage until the enemy reaches the level you want."""
 
-from ... import console, prompts, ztur
+from ... import auto_mode, console, prompts, ztur
 from . import fight
 
 TITLE = "ZTUR Finish"
@@ -29,6 +29,7 @@ def run(target_level, enemy_level):
 
     done = 0
     retries = 0
+    auto = True
     while done < runs:
         lines = [f"Run {done + 1}/{runs}", f"Target level {target_level}"]
         if retries:
@@ -37,6 +38,9 @@ def run(target_level, enemy_level):
 
         ztur.reach(*POPUPS)
         fight.launch()
+        if auto:
+            auto_mode.enable(auto_mode.BATTLE)
+            auto = False
         died = fight.wait_for_clear()
         ztur.reach(*POPUPS)
 

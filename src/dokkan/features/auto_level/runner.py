@@ -2,7 +2,7 @@
 
 import time
 
-from ... import console, prompts
+from ... import auto_mode, console, prompts
 from . import act, finish, launch
 
 TITLE = "Auto Level"
@@ -21,6 +21,9 @@ def run(runs=1):
         console.banner(TITLE, f"Run {index}/{runs}")
 
         launch.launch()
+        if index == 1:
+            auto_mode.enable(auto_mode.BATTLE, auto_mode.NAVIGATION)
+
         finish.wait_for_end(replay=index < runs)
         act.settle()
 

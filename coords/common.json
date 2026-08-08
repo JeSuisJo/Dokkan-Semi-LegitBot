@@ -12,6 +12,14 @@
     "img": "img/loss_ztur_pop_up.png",
     "region": [119, 831, 390, 962]
   },
+  "auto_battle_on": {
+    "tap": [501, 1031],
+    "rgb": [0, 198, 0]
+  },
+  "auto_battle_off": {
+    "tap": [501, 1031],
+    "rgb": [124, 124, 124]
+  },
   "stamina_menu": {
     "rgb_at": [570, 427],
     "rgb": [244, 176, 93]

@@ -2,7 +2,7 @@
 
 import time
 
-from ... import console, screen, ztur
+from ... import auto_mode, console, screen, ztur
 from ...stamina import ztur as stamina
 
 PAUSE = 0.4
@@ -11,9 +11,11 @@ DEATH_CONFIRM = 2.0
 POPUPS = ("retry_too_many_friends_ok", "retry_friend_request_ok", "retry_back")
 
 
-def run_once():
+def run_once(auto=False):
     """Play one run. Returns True when the team died and it does not count."""
     _launch()
+    if auto:
+        auto_mode.enable(auto_mode.BATTLE)
     died = _wait_for_clear()
     ztur.reach(*POPUPS)
     return died

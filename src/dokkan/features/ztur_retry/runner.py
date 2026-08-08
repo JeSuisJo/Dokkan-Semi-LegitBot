@@ -28,20 +28,23 @@ def run(characters=1, wanted=medals.MEDALS):
         console.warn("Every medal was skipped, nothing to farm")
         return
 
+    auto = True
     for medal in wanted:
-        _farm(medal, characters)
+        _farm(medal, characters, auto)
+        auto = False
 
     farmed = ", ".join(medal.label for medal in wanted)
     console.banner(TITLE, f"{farmed} farmed for {characters} character(s)")
 
 
-def _farm(medal, characters):
+def _farm(medal, characters, auto=False):
     medals.select(medal)
 
     total = medal.runs * characters
     done = 0
     while done < total:
         console.banner(TITLE, f"{medal.label} medal run {done + 1}/{total}")
-        if not fight.run_once():
+        if not fight.run_once(auto):
             done += 1
+        auto = False
         time.sleep(PAUSE)

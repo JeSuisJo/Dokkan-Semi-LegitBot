@@ -3,6 +3,14 @@
     "region": [613, 982, 713, 1082],
     "rgb": [255, 0, 0]
   },
+  "auto_navigation_on": {
+    "tap": [421, 1031],
+    "rgb": [0, 198, 0]
+  },
+  "auto_navigation_off": {
+    "tap": [421, 1031],
+    "rgb": [124, 124, 124]
+  },
   "level_end_ok": {
     "img": "img/ok_button.png",
     "region": [504, 993, 567, 1032],
