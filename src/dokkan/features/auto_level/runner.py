@@ -24,10 +24,14 @@ def run(runs=1):
         if index == 1:
             auto_mode.enable(auto_mode.BATTLE, auto_mode.NAVIGATION)
 
-        finish.wait_for_end(replay=index < runs)
-        act.settle()
+        replay = index < runs
+        finish.wait_for_end(replay=replay)
+        # Only the replay tap can raise the ACT prompt: on the last run the
+        # end-of-level prompt is simply left on screen, and waiting for one
+        # costs settle() its whole timeout for nothing.
+        if replay:
+            act.settle()
 
-        console.info(f"\nRun {index}/{runs} completed")
         if index < runs:
             time.sleep(BETWEEN_RUNS)
 
