@@ -29,9 +29,8 @@ so there is nothing to write by hand.
 - Automatic ACT refills with food or Dragon Stones, stopping cleanly when the
   one you allowed is not available, and never spending a Dragon Stone you did
   not allow
-- Six game languages supported (French, English, Spanish, German, Chinese,
-  Korean): the buttons whose picture changes with the language have one
-  reference per language
+- Six game languages supported: French, English, Spanish, German, Chinese and
+  Korean
 - Friend requests and the "too many friends" popup dismissed on their own
 - Death detection on ZTUR runs: a lost run is replayed instead of counted, and
   ZTUR Finish gives up after 3 replays on the same enemy level
@@ -71,37 +70,6 @@ Or install the packages by hand:
 ```bash
 pip install "pillow>=10" "opencv-python>=4.8" "numpy>=1.24"
 ```
-
-## Reference images
-
-The bot finds the game's buttons by **matching a small picture of them**, and
-`img/` ships the six it needs, cropped at **1080x800**, the resolution the whole
-project assumes:
-
-| File                        | What it matches                                 |
-| --------------------------- | ----------------------------------------------- |
-| `img/ok_button.png`         | the **OK** button, shared by 22 dialogs         |
-| `img/ztur.png`              | the **ZTUR stage row**, in the stage list       |
-| `img/restore_act_title.png` | the **ACT restore** title, on the refill dialog |
-| `img/food.png`              | the **meat icon**, in the ACT recovery menu     |
-| `img/loss_ztur.png`         | the **defeat screen** of a lost ZTUR run        |
-| `img/loss_ztur_pop_up.png`  | the **popup** that defeat puts up on top of it  |
-
-> One `ok_button.png` serves 22 dialogs: the bot searches for it inside a region
-> of its own per dialog, so the same button graphic is found wherever it sits.
-
-Two of them carry text, so they change with the game's language and ship in
-several versions. `coords/*.json` always names the French file and the bot swaps
-in the one your `language` calls for:
-
-| Reference                   | Other versions                                                                                 |
-| --------------------------- | ---------------------------------------------------------------------------------------------- |
-| `img/ok_button.png`         | `ok_button_asian.png` (Chinese, Korean)                                                        |
-| `img/restore_act_title.png` | `restore_act_title_english.png`, `_spanish.png`, `_german.png`, `_asian.png` (Chinese, Korean) |
-
-Each one is looked up by name through `coords/*.json`, where its region and its
-match threshold live. A missing reference stops the mode with a message naming
-the file, it never taps blindly.
 
 ## Before Starting
 
@@ -151,9 +119,9 @@ copy it and edit by hand instead of answering the wizard.
 | `use_meat_first`    | `true` to spend food (meat) on ACT refills, before anything else                                             |
 | `use_dragon_stones` | `true` to spend Dragon Stones when food is off or unavailable                                                |
 
-`language` picks the reference images for the buttons that carry text, see
-[Reference images](#reference-images). Set it to the game's own language, not
-the emulator's.
+`language` is the language the **game** is displayed in, not the emulator's:
+Dokkan prints some of its buttons in it, and the bot reads them wrong when the
+two disagree.
 
 `use_meat_first` wins over `use_dragon_stones`. With both `false` a mode that
 runs out of ACT stops instead of spending anything, which is the safe default.
@@ -215,7 +183,7 @@ src/dokkan/
 ├── paths.py          # resolve files relative to the project root
 ├── console.py        # the framed banner every mode prints
 ├── prompts.py        # input() helpers (number, pick-from-list, yes/no)
-├── language.py       # the game's language and the references that follow it
+├── language.py       # the game's language and the images that change with it
 ├── ztur.py           # the ZTUR stage list, shared by both ZTUR modes
 │
 ├── driver/           # the emulator, behind one interface
