@@ -1,0 +1,86 @@
+{
+  "restore_act_title": {
+    "img": "img/restore_act_title.png",
+    "region": [190, 357, 628, 529]
+  },
+  "restore_act_food": {
+    "img": "img/food.png",
+    "region": [146, 498, 310, 727]
+  },
+
+  "level_food": {
+    "tap": [572, 649]
+  },
+  "level_food_ok": {
+    "img": "img/ok_button.png",
+    "region": [497, 721, 567, 775]
+  },
+  "level_stone": {
+    "tap": [577, 427]
+  },
+  "level_stone_ok": {
+    "img": "img/ok_button.png",
+    "region": [494, 627, 572, 689]
+  },
+  "level_refill_button": {
+    "tap": [619, 661],
+    "rgb": [238, 102, 23]
+  },
+  "level_refill_ok": {
+    "img": "img/ok_button.png",
+    "region": [366, 586, 436, 640]
+  },
+  "level_refill_close": {
+    "tap": [266, 1014]
+  },
+  "level_refill_dismiss": {
+    "tap": [537, 658]
+  },
+
+  "dialog_stone_ok": {
+    "img": "img/ok_button.png",
+    "region": [500, 627, 579, 688]
+  },
+  "dialog_stone_confirm_ok": {
+    "img": "img/ok_button.png",
+    "region": [362, 586, 439, 644]
+  },
+  "dialog_stone_close": {
+    "tap": [282, 1014]
+  },
+
+  "ztur_food": {
+    "tap": [563, 658]
+  },
+  "ztur_food_ok_1": {
+    "img": "img/ok_button.png",
+    "region": [496, 723, 580, 783]
+  },
+  "ztur_food_ok_2": {
+    "img": "img/ok_button.png",
+    "region": [491, 628, 572, 687]
+  },
+  "ztur_food_ok_3": {
+    "img": "img/ok_button.png",
+    "region": [355, 585, 443, 644]
+  },
+  "ztur_stone": {
+    "tap": [581, 431]
+  },
+  "ztur_stone_ok_1": {
+    "img": "img/ok_button.png",
+    "region": [493, 627, 577, 688]
+  },
+  "ztur_stone_ok_2": {
+    "img": "img/ok_button.png",
+    "region": [360, 587, 446, 645]
+  },
+
+  "ztur_dialog_stone": {
+    "tap": [532, 658]
+  },
+  "ztur_dialog_stone_ok": {
+    "img": "img/ok_button.png",
+    "region": [364, 585, 439, 646]
+  }
+}

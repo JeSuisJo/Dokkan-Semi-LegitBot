@@ -1,0 +1,23 @@
+{
+  "level_start": {
+    "region": [613, 982, 713, 1082],
+    "rgb": [255, 0, 0]
+  },
+  "level_end_ok": {
+    "img": "img/ok_button.png",
+    "region": [504, 993, 567, 1032],
+    "tap": [273, 1014]
+  },
+  "friend_add_ok": {
+    "img": "img/ok_button.png",
+    "region": [121, 570, 716, 837],
+    "tap": [268, 677]
+  },
+  "not_enough_act_ok": {
+    "img": "img/ok_button.png",
+    "region": [449, 555, 632, 785]
+  },
+  "dismiss_result": {
+    "tap": [399, 13]
+  }
+}

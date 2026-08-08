@@ -7,10 +7,15 @@ env/
 venv/
 ENV/
 .venv
+*.egg-info/
+build/
+dist/
+
 *.png
 !img/*.png
-!placement*.png
-screen_coords.png
-debug_*.png
+temp.png
 *.log
 
+config.json
+CLAUDE.md
+helper

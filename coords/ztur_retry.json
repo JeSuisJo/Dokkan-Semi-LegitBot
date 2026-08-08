@@ -1,0 +1,56 @@
+{
+  "retry_stage": {
+    "tap": [399, 770]
+  },
+  "retry_start": {
+    "tap": [665, 1030],
+    "rgb": [255, 0, 0]
+  },
+  "retry_complete_ok": {
+    "img": "img/ok_button.png",
+    "region": [360, 986, 443, 1045]
+  },
+  "retry_too_many_friends_ok": {
+    "img": "img/ok_button.png",
+    "region": [357, 656, 437, 715]
+  },
+  "retry_friend_request_ok": {
+    "img": "img/ok_button.png",
+    "region": [490, 657, 577, 714],
+    "tap": [273, 686]
+  },
+  "retry_back": {
+    "tap": [413, 18]
+  },
+  "retry_no_act_ok": {
+    "img": "img/ok_button.png",
+    "region": [499, 629, 575, 686]
+  },
+  "retry_food_button": {
+    "rgb_at": [563, 670],
+    "rgb": [238, 141, 22]
+  },
+  "medal_list": {
+    "tap": [588, 848]
+  },
+  "medal_selected": {
+    "rgb_at": [447, 949],
+    "rgb": [155, 159, 159]
+  },
+  "medal_confirm_ok": {
+    "img": "img/ok_button.png",
+    "region": [493, 937, 580, 995]
+  },
+  "medal_bronze": {
+    "tap": [399, 798]
+  },
+  "medal_silver": {
+    "tap": [390, 593]
+  },
+  "medal_gold": {
+    "tap": [390, 485]
+  },
+  "medal_rainbow": {
+    "tap": [397, 380]
+  }
+}

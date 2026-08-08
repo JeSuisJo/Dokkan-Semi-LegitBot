@@ -1,0 +1,19 @@
+{
+  "ztur_stage": {
+    "img": "img/ztur.png",
+    "region": [86, 639, 260, 721],
+    "threshold": 0.8
+  },
+  "loss_ztur": {
+    "img": "img/loss_ztur.png",
+    "region": [45, 840, 323, 941]
+  },
+  "loss_ztur_pop_up": {
+    "img": "img/loss_ztur_pop_up.png",
+    "region": [119, 831, 390, 962]
+  },
+  "stamina_menu": {
+    "rgb_at": [570, 427],
+    "rgb": [244, 176, 93]
+  }
+}

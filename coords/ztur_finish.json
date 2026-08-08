@@ -1,0 +1,28 @@
+{
+  "finish_stage": {
+    "tap": [401, 728]
+  },
+  "finish_stage_retry": {
+    "tap": [399, 749]
+  },
+  "finish_start": {
+    "tap": [670, 1032],
+    "rgb": [255, 0, 0]
+  },
+  "finish_complete_ok": {
+    "img": "img/ok_button.png",
+    "region": [362, 988, 441, 1046]
+  },
+  "finish_too_many_friends_ok": {
+    "img": "img/ok_button.png",
+    "region": [356, 656, 445, 717]
+  },
+  "finish_friend_request_ok": {
+    "img": "img/ok_button.png",
+    "region": [488, 655, 584, 715],
+    "tap": [261, 686]
+  },
+  "finish_back": {
+    "tap": [401, 15]
+  }
+}
