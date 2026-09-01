@@ -19,3 +19,6 @@ temp.png
 config.json
 CLAUDE.md
 helper
+
+# Code reference, generated when the comments were stripped
+DOC.md

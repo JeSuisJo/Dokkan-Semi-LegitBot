@@ -1,5 +1,3 @@
-"""ZTUR Finish: run the stage until the enemy reaches the level you want."""
-
 from ... import auto_mode, console, prompts, ztur
 from . import fight
 
@@ -7,8 +5,6 @@ TITLE = "ZTUR Finish"
 
 POPUPS = ("finish_too_many_friends_ok", "finish_friend_request_ok", "finish_back")
 
-# Replays allowed after a defeat, counted per enemy level: losing four times in
-# a row means the team cannot take that level, and the enemy only gets stronger.
 MAX_RETRIES = 3
 
 
@@ -20,8 +16,6 @@ def prepare():
 
 
 def run(target_level, enemy_level):
-    # Each clear pushes the enemy up one level, and the target level has to be
-    # played too, hence the +1.
     runs = (target_level + 1) - enemy_level
     if runs < 1:
         console.warn(f"Enemy level {enemy_level} is already past {target_level}")

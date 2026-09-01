@@ -1,5 +1,3 @@
-"""One medal run: enter the stage, fight, come back to the list."""
-
 import time
 
 from ... import auto_mode, console, screen, ztur
@@ -12,7 +10,6 @@ POPUPS = ("retry_too_many_friends_ok", "retry_friend_request_ok", "retry_back")
 
 
 def run_once(auto=False):
-    """Play one run. Returns True when the team died and it does not count."""
     _launch()
     if auto:
         auto_mode.enable(auto_mode.BATTLE)
@@ -54,13 +51,6 @@ def _launch():
 
 
 def _wait_for_clear():
-    """Tap through the fight until it clears. Returns True on a death instead.
-
-    The defeat screen names itself, so it settles the question on its own. Short
-    of it, a death also drops straight back to the stage list, which is where a
-    tap too many lands too, so there the list has to still be there a moment
-    later to count.
-    """
     while True:
         with screen.freeze():
             found = screen.find_image("retry_complete_ok")

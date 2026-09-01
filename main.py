@@ -1,9 +1,3 @@
-"""Launcher kept at the project root so `python main.py` still works.
-
-The package itself lives in `src/dokkan`; install it with `pip install -e .`
-to use `python -m dokkan` instead.
-"""
-
 import os
 import sys
 

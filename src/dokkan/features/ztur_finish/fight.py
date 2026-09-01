@@ -1,5 +1,3 @@
-"""Enter the stage from the list, then sit through the fight."""
-
 import time
 
 from ... import console, screen, ztur
@@ -8,7 +6,6 @@ PAUSE = 0.4
 
 
 def launch():
-    """Open the stage and start it."""
     console.info("Opening the ZTUR stage")
     screen.tap("finish_stage")
     time.sleep(PAUSE)
@@ -16,7 +13,6 @@ def launch():
     while True:
         with screen.freeze():
             ready = screen.see_color("finish_start")
-            # Still on the list: the tap landed next to the row, not on it.
             missed = not ready and ztur.on_list()
 
         if ready:
@@ -31,11 +27,6 @@ def launch():
 
 
 def wait_for_clear():
-    """Tap through the fight until its completion prompt, then confirm it.
-
-    Returns True on a defeat instead: the enemy only levels up on a clear, so a
-    lost run has to be played again.
-    """
     while True:
         with screen.freeze():
             found = screen.find_image("finish_complete_ok")

@@ -1,5 +1,3 @@
-"""Auto Level: replay the stage the team selection screen is showing."""
-
 import time
 
 from ... import auto_mode, console, prompts
@@ -26,9 +24,6 @@ def run(runs=1):
 
         replay = index < runs
         finish.wait_for_end(replay=replay)
-        # Only the replay tap can raise the ACT prompt: on the last run the
-        # end-of-level prompt is simply left on screen, and waiting for one
-        # costs settle() its whole timeout for nothing.
         if replay:
             act.settle()
 

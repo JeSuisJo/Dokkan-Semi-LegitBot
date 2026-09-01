@@ -1,5 +1,3 @@
-"""Which refill the user allows, and what to do when they allow none."""
-
 from .. import config
 from .. import screen
 
@@ -13,7 +11,6 @@ def dragon_stones():
 
 
 def refuse():
-    """Abort the run: out of ACT, with every refill turned off in config.json."""
     screen.stop(
         "Out of ACT, and both use_meat_first and use_dragon_stones are false "
         "in config.json"

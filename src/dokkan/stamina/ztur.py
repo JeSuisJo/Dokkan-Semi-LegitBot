@@ -1,17 +1,12 @@
-"""ACT refills on a ZTUR stage, from either screen the game can show."""
-
 import time
 
 from .. import console, screen
 from . import options
 
-# The refill dialogs stack and animate; a tap sent while one is still sliding
-# lands on nothing, so these steps wait longer than the rest of the bot.
 PAUSE = 1.0
 
 
 def from_menu():
-    """Refill from the recovery menu, the one listing food and Dragon Stones."""
     if options.food_first():
         console.info("Restoring ACT with food")
         screen.tap("ztur_food")
@@ -31,7 +26,6 @@ def from_menu():
 
 
 def from_dialog():
-    """Refill from the bare "not enough ACT" dialog, Dragon Stones only."""
     if not options.dragon_stones():
         screen.stop("Out of ACT, and use_dragon_stones is false in config.json")
 

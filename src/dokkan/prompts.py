@@ -1,5 +1,3 @@
-"""Interactive prompt helpers, one per answer shape."""
-
 from . import console
 
 
@@ -29,7 +27,6 @@ def _show_menu(prompt, labels):
 
 
 def _index(answer, count):
-    """The 1-based option ``answer`` designates, or None if it designates none."""
     if answer.isdigit() and 1 <= int(answer) <= count:
         return int(answer)
     return None
@@ -40,7 +37,6 @@ def _out_of_range(count):
 
 
 def ask_from_list(prompt, options):
-    """Ask the user to pick one entry from ``options``; returns its 1-based index."""
     _show_menu(prompt, options)
     while True:
         chosen = _index(input(f"Choice (1-{len(options)}): ").strip(), len(options))
@@ -50,11 +46,6 @@ def ask_from_list(prompt, options):
 
 
 def ask_choice(prompt, options, default, labels=None):
-    """Pick one value from ``options``; an empty answer keeps ``default``.
-
-    ``labels`` renders each option for the user when the stored value is not
-    self-explanatory (``"1"`` -> ``"Season 1"``). Returns the option itself.
-    """
     shown = labels or options
     _show_menu(prompt, shown)
     hint = shown[options.index(default)] if default in options else default
@@ -73,10 +64,6 @@ def ask_yes_no(prompt):
 
 
 def ask_many_from_list(prompt, options):
-    """Ask for several entries separated by spaces; returns a set of indices.
-
-    A comma is accepted too, silently: it is the other thing people type.
-    """
     _show_menu(prompt, options)
     while True:
         answer = input(f"Choices (1-{len(options)}, e.g. 1 3) []: ").strip()

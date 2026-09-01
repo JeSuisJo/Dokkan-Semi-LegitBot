@@ -1,5 +1,3 @@
-"""Interactive menu: choose and launch a mode."""
-
 import traceback
 
 from . import console
@@ -43,10 +41,7 @@ def main():
 
 
 def _run(feature):
-    """Run one feature, keeping the menu alive whatever it raises."""
     try:
-        # Resolve the device first: a mode that cannot reach one should fail
-        # here, not halfway through asking the user for its settings.
         driver.connect_device()
         args = feature.prepare() if feature.prepare else ()
         feature.run(*args)
@@ -57,7 +52,7 @@ def _run(feature):
     except KeyboardInterrupt:
         print()
         console.info("Interrupted by user")
-    except Exception as exc:  # noqa: BLE001 - the menu must survive any mode
+    except Exception as exc:  # noqa: BLE001
         console.error(f"Error during execution: {exc}")
         traceback.print_exc()
 

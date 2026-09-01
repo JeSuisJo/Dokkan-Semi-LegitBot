@@ -1,9 +1,3 @@
-"""Single source of truth for user configuration (config.json).
-
-Everything that reads or writes config.json goes through here: the file is
-parsed once, kept in memory, and written back from that same dict.
-"""
-
 import json
 import os
 
@@ -24,12 +18,10 @@ def _load():
 
 
 def exists():
-    """True when config.json is on disk (false on a fresh install)."""
     return os.path.exists(CONFIG_FILE)
 
 
 def get_config():
-    """Return the cached config dict, loading it on first use."""
     global _cache
     if _cache is None:
         _cache = _load()
@@ -37,22 +29,16 @@ def get_config():
 
 
 def reload():
-    """Drop the cache so the next :func:`get_config` re-reads the file."""
     global _cache
     _cache = None
     return get_config()
 
 
 def save(key, value):
-    """Persist one key to config.json and to the live config."""
     save_many({key: value})
 
 
 def save_many(values):
-    """Persist several keys to config.json and to the live config.
-
-    A write failure is not fatal: the values still apply to this session.
-    """
     data = get_config()
     data.update(values)
     try:

@@ -1,5 +1,3 @@
-"""ZTUR Retry: farm bronze, silver, gold and rainbow medals in that order."""
-
 import time
 
 from ... import console, prompts

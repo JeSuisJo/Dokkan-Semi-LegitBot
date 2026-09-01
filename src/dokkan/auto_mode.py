@@ -1,9 +1,3 @@
-"""Switch the fight's auto toggles on, green being on and grey off.
-
-The game keeps both settings for the next runs, so a mode only has to do this
-on its first fight. Auto navigation only exists outside the ZTUR stages.
-"""
-
 import time
 
 from . import console, screen
