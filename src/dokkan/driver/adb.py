@@ -1,5 +1,6 @@
 """Android device backend, driven through the bundled adb binary."""
 
+import re
 import subprocess
 import sys
 import time
@@ -23,6 +24,11 @@ EMULATOR_PORTS = (
 # Under pythonw.exe (no console), each adb.exe call would pop up its own console
 # window. CREATE_NO_WINDOW keeps those child processes headless.
 _NO_WINDOW = subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
+
+# dumpsys prints the focused activity as "package/activity" inside an
+# ActivityRecord{...} blob, on a line carrying one of these markers.
+_RESUMED = ("topResumedActivity=", "ResumedActivity:")
+_COMPONENT = re.compile(r"([A-Za-z0-9_.]+/[A-Za-z0-9_.$]+)")
 
 
 class AdbDriver(Driver):
@@ -62,11 +68,9 @@ class AdbDriver(Driver):
 
         if len(devices) == 1:
             self._use_device(devices[0], "ADB device auto-selected")
-        elif configured:
-            # The saved entry is stale among several devices: adopt the first
-            # rather than interrupting the run with a question.
-            self._use_device(devices[0], "ADB device auto-updated")
         else:
+            # A saved id reaching this point is stale, and adopting it silently
+            # would drive whichever emulator now answers to it.
             self._use_device(self._ask_device(devices), "ADB device selected")
 
     @classmethod
@@ -76,10 +80,7 @@ class AdbDriver(Driver):
 
     @classmethod
     def list_devices(cls):
-        result = cls._adb(["devices"], text=True, timeout=10)
-        if result is None:
-            return []
-        lines = result.stdout.strip().split("\n")[1:]
+        lines = cls._adb_text(["devices"], timeout=10).strip().split("\n")[1:]
         return [line.split("\t")[0] for line in lines if "\tdevice" in line]
 
     @classmethod
@@ -92,13 +93,39 @@ class AdbDriver(Driver):
     @classmethod
     def _is_online(cls, device_id):
         """True if that one device answers, without scanning the whole list."""
-        result = cls._adb(["get-state"], device_id=device_id, text=True, timeout=10)
-        return result is not None and result.returncode == 0 \
-            and result.stdout.strip() == "device"
+        state = cls._adb_text(["get-state"], device_id=device_id, timeout=10)
+        return state.strip() == "device"
 
-    @staticmethod
-    def _ask_device(devices):
-        return devices[ask_from_list("Multiple devices connected:", devices) - 1]
+    @classmethod
+    def _ask_device(cls, devices):
+        labels = [cls._device_label(device) for device in devices]
+        return devices[ask_from_list("Multiple devices connected:", labels) - 1]
+
+    @classmethod
+    def _device_label(cls, device_id):
+        package = cls._foreground_package(device_id)
+        return f"{device_id} - {package}" if package else device_id
+
+    @classmethod
+    def _foreground_package(cls, device_id):
+        """The package showing on that device, or "" when none resolves.
+
+        ro.product.model would be shorter and useless: an emulator spoofs a
+        real phone, and two instances report the same one.
+        """
+        dump = cls._adb_text(
+            ["shell", "dumpsys", "activity", "activities"], device_id=device_id
+        )
+        for line in dump.splitlines():
+            if not any(marker in line for marker in _RESUMED):
+                continue
+            match = _COMPONENT.search(line)
+            # An idle emulator resumes its launcher. The whole component is
+            # tested, app.lawnchair/.LawnchairLauncher says so only in the
+            # activity half.
+            if match and "launcher" not in match.group(1).lower():
+                return match.group(1).split("/")[0]
+        return ""
 
     def _use_device(self, device_id, note):
         self.device_id = device_id
@@ -122,6 +149,14 @@ class AdbDriver(Driver):
             )
         except (subprocess.SubprocessError, OSError):
             return None
+
+    @classmethod
+    def _adb_text(cls, cmd, device_id=None, timeout=30):
+        """Run one adb command and return its stdout, "" on any failure."""
+        result = cls._adb(cmd, device_id=device_id, text=True, timeout=timeout)
+        if result is None or result.returncode != 0:
+            return ""
+        return result.stdout
 
     def _run(self, cmd):
         result = self._adb(cmd, device_id=self.device_id, text=True)
